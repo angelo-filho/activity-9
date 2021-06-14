@@ -2,8 +2,8 @@ import pygame
 
 
 class Square:
-    def __init__(self, x, y, width, height, color):
-        self.rect = pygame.rect.Rect(x, y, width, height)
+    def __init__(self, x, y, width, color):
+        self.rect = pygame.rect.Rect(x, y, width, width)
         self.color = color
 
     def draw(self, screen):
