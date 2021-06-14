@@ -6,7 +6,6 @@ from control.suports import *
 import os
 
 pygame.init()
-print("Hi")
 
 
 screen = pygame.display.set_mode((WINDOW_SIZE[0], WINDOW_SIZE[1]))
@@ -15,10 +14,6 @@ clock = pygame.time.Clock()
 
 
 snake_logo = pygame.image.load(os.path.join("assets", "Start.png"))
-message = pygame.image.load(os.path.join("assets", "start_screen_message.png"))
-
-
-message_frames = 0
 
 running = True
 
@@ -28,17 +23,16 @@ while running:
         if event.type == QUIT:
             running = False
         elif event.type == KEYDOWN:
-            gameplay()
+            if event.key == K_p:
+                gameplay(screen)
+            elif event.key == K_ESCAPE:
+                running = False
     
     screen.fill("#100F0F")
-    screen.blit(snake_logo, (45, -20))
+    screen.blit(snake_logo, (45, -150))
 
-    message_frames += 1
-    if message_frames > 30:
-        screen.blit(message, (230, 562))
-
-    if message_frames > 60:
-        message_frames = 0
+    draw_text("PRESS P TO PLAY", 230, 451, 50, WHITE, screen)
+    draw_text("PRESS ESC TO EXIT", 210, 516, 50, WHITE, screen)
 
     pygame.display.flip()
     clock.tick(60)

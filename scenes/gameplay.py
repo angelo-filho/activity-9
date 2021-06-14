@@ -7,12 +7,9 @@ from models.Apple import Apple
 
 from models.Snake import Snake
 
-def gameplay():
-    pygame.init()
-
-    screen = pygame.display.set_mode(WINDOW_SIZE)
+def gameplay(screen):
     clock = pygame.time.Clock()
-    FPS = 20
+    fps = 20
 
     running = True
 
@@ -23,7 +20,8 @@ def gameplay():
     while running:
         for event in pygame.event.get():
             if event.type == QUIT:
-                running = False
+                pygame.quit()
+                sys.exit()
         
         if snake.collision_with_walls() or snake.self_collision():
             running = False
@@ -40,7 +38,4 @@ def gameplay():
         snake.update()
 
         pygame.display.flip()
-        clock.tick(FPS)
-
-    pygame.quit()
-    sys.exit()
+        clock.tick(fps)
