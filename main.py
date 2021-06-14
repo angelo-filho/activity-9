@@ -6,6 +6,7 @@ from control.suports import *
 import os
 
 pygame.init()
+print("Hi")
 
 
 screen = pygame.display.set_mode((WINDOW_SIZE[0], WINDOW_SIZE[1]))
