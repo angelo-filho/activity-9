@@ -1,48 +1,44 @@
+from scenes.gameplay import gameplay
 import pygame
-import sys
-
 from pygame.locals import *
 from control.constants import *
-from models.Apple import Apple
+from control.suports import *
 
-from models.Snake import Snake
+import os
 
 pygame.init()
 
-screen = pygame.display.set_mode(WINDOW_SIZE)
+
+screen = pygame.display.set_mode((WINDOW_SIZE[0], WINDOW_SIZE[1]))
+pygame.display.set_caption("Snake")
 clock = pygame.time.Clock()
-FPS = 30
+
+
+snake_logo = pygame.image.load(os.path.join("assets", "Start.png"))
+message = pygame.image.load(os.path.join("assets", "start_screen_message.png"))
+
+
+message_frames = 0
 
 running = True
-
-
-apple = Apple(15*10, 15 * 13, 15, RED)
-
-
-snake = Snake(5 * 15, 5 * 15)
 
 
 while running:
     for event in pygame.event.get():
         if event.type == QUIT:
             running = False
+        elif event.type == KEYDOWN:
+            gameplay()
     
-    if snake.collision_with_walls():
-        running = False
-    
-    elif snake.collision_with_apple(apple):
-        apple.reposition()
-        snake.add_body()
+    screen.fill("#100F0F")
+    screen.blit(snake_logo, (45, -20))
 
-    screen.fill(BLACK)
+    message_frames += 1
+    if message_frames > 30:
+        screen.blit(message, (230, 562))
 
-    apple.draw(screen)
-
-    snake.draw_body(screen)
-    snake.update()
+    if message_frames > 60:
+        message_frames = 0
 
     pygame.display.flip()
-    clock.tick(FPS)
-
-pygame.quit()
-sys.exit()
+    clock.tick(60)

@@ -66,6 +66,13 @@ class Snake:
         if self.head.rect.colliderect(apple.rect):
             return True
         return False
+    
+    def self_collision(self):
+        for i in range(1, len(self.body)):
+            if self.head.rect.topleft == self.body[i].rect.topleft:
+                return True
+        return False
+
 
     def add_body(self):
         tail = self.body[-1].rect
