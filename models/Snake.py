@@ -73,7 +73,6 @@ class Snake:
                 return True
         return False
 
-
     def add_body(self):
         tail = self.body[-1].rect
         self.body.append(SnakeBody(tail.x, tail.y, tail.width, WHITE))
