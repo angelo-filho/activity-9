@@ -1,5 +1,4 @@
 from scenes.gameplay import gameplay
-import pygame
 from pygame.locals import *
 from control.constants import *
 from control.suports import *
