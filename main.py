@@ -16,7 +16,7 @@ FPS = 30
 running = True
 
 
-apple = Apple(15*10, 15 * 13, 15, 15, RED)
+apple = Apple(15*10, 15 * 13, 15, RED)
 
 
 snake = Snake(5 * 15, 5 * 15)
