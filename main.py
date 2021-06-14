@@ -16,10 +16,10 @@ FPS = 30
 running = True
 
 
-apple = Apple(300, 15 * 13, 15, 15, RED)
+apple = Apple(15*10, 15 * 13, 15, 15, RED)
 
 
-snake = Snake((WINDOW_SIZE[0]/2), (WINDOW_SIZE[1]/2))
+snake = Snake(5 * 15, 5 * 15)
 
 
 while running:
@@ -27,9 +27,12 @@ while running:
         if event.type == QUIT:
             running = False
     
-    
     if snake.collision_with_walls():
         running = False
+    
+    elif snake.collision_with_apple(apple):
+        apple.reposition()
+        snake.add_body()
 
     screen.fill(BLACK)
 

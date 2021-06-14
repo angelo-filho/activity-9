@@ -43,9 +43,12 @@ class Snake:
             self.head.rect.y += self.speed
     
     def move_body(self):
+        support_list = []
+        for j in self.body:
+            support_list.append(j.rect.topleft)
         for i in range(1, len(self.body)):
-            self.body[i].move(self.body[i - 1].rect)
-    
+            self.body[i].move(support_list[i - 1])
+        
     def change_direction(self):
         keys = pygame.key.get_pressed()
         if keys[K_LEFT] and not self.current_dir == self.RIGHT:
@@ -63,7 +66,19 @@ class Snake:
             return True
         return False
 
+    def collision_with_apple(self, apple):
+        if self.head.rect.colliderect(apple.rect):
+            return True
+        return False
+
+    def add_body(self):
+        tail = self.body[-1].rect
+        self.body.append(SnakeBody(tail.x, tail.y, tail.width, tail.height, WHITE))
+        
+
     def draw_body(self, screen):
         for piece in self.body:
             pygame.draw.rect(screen, WHITE, piece.rect)
+
+
 
