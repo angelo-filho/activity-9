@@ -6,5 +6,7 @@ from models.Square import Square
 
 class Apple(Square):
     def reposition(self):
-        self.rect.x = randint(0, WINDOW_SIZE[1] - self.rect.width)
-        self.rect.y = randint(0, WINDOW_SIZE[1] - self.rect.height)
+        width = self.rect.width
+
+        self.rect.x = (randint(0, WINDOW_SIZE[1] - width) // width) * width
+        self.rect.y = (randint(0, WINDOW_SIZE[1] - width) // width) * width
